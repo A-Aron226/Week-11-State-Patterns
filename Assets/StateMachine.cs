@@ -6,6 +6,11 @@ public class StateMachine
 {
     State currentState;
 
+    public StateMachine(State initialState)
+    {
+
+    }
+
     public void CHangeState(State newState)
     {
         currentState.ExitState();
@@ -13,9 +18,9 @@ public class StateMachine
         currentState.EnterState();
     }
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        currentState.UpdateState();
+        currentState?.UpdateState(); //checking if current state if null or not
     }
 }
 
