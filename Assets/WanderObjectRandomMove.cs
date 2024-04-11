@@ -15,8 +15,10 @@ public class WanderObjectRandomMove : State
     }
     public override void EnterState() //overriding from State class
     {
-        agent.GetComponent<NavMeshAgent>();
-        myStateMachine.enemy.transform.position = startingLocation;
+        //agent.GetComponent<NavMeshAgent>();
+        //myStateMachine.enemy.transform.position = startingLocation;
+        agent = myStateMachine.enemy.GetComponent<NavMeshAgent>();
+
     }
 
     //private T Get
