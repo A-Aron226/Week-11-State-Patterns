@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 public class WanderObjectRandomMove : State
 {
     NavMeshAgent agent;
-    float wanderLocation = 10.0f;
+    float wanderLocation = 10;
     Vector3 startingLocation;
+
     public WanderObjectRandomMove(StateMachine m) : base(m)
     {
 
     }
     public override void EnterState() //overriding from State class
     {
-        //agent = GetComponent<NavMeshAgent>();
-        //startingLocation = transform.position;
+        agent = GetComponent<NavMeshAgent>();
+        startingLocation = transform.position;
     }
+
+    //private T Get
     public override void UpdateState()
     {
         Debug.Log("moving");
@@ -27,7 +29,6 @@ public class WanderObjectRandomMove : State
     {
         
     }
-
     public void GoToRandomPosition()
     {
         agent.SetDestination(GetRandomPoint());
