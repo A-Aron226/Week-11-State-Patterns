@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class StateMachine
+public class StateMachine : MonoBehaviour
 {
     State currentState;
-
-    /*public StateMachine(State initialState)
-    {
-        ChangeState(initialState);
-    }*/
+    NavMeshAgent agent;
+    public GameObject enemy;
+    Vector3 startingLocation;
 
     public void Initialize(State initialState)
     {
         ChangeState(initialState);
+        //GameObject.FindAnyObjectByType<enemy>();
+        startingLocation = transform.position;
+        //var enemy = GameObject.FindAnyObjectByType<EnemyNavigation>(); //placeholders if needed to be used
     }
 
     public void ChangeState(State newState)
@@ -35,6 +37,9 @@ public class State
     public State(StateMachine m)
     {
         myStateMachine = m;
+        
+        m.enemy.GetComponent<NavMeshAgent>();
+        m.enemy.transform;
     }
     public virtual void EnterState() //using virtual to be able to override functions
     {

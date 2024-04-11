@@ -7,6 +7,7 @@ public class WanderObjectRandomMove : State
     NavMeshAgent agent;
     float wanderLocation = 10;
     Vector3 startingLocation;
+    float elapsed = 0;
 
     public WanderObjectRandomMove(StateMachine m) : base(m)
     {
@@ -14,7 +15,7 @@ public class WanderObjectRandomMove : State
     }
     public override void EnterState() //overriding from State class
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent.GetComponent<NavMeshAgent>();
         startingLocation = transform.position;
     }
 
@@ -22,7 +23,12 @@ public class WanderObjectRandomMove : State
     public override void UpdateState()
     {
         Debug.Log("moving");
-        GetRandomPoint();
+        
+
+        if (elapsed > 5)
+        {
+            GetRandomPoint();
+        }
     }
 
     public override void ExitState()
