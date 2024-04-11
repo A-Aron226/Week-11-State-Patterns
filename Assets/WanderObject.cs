@@ -10,9 +10,9 @@ public class WanderObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //myStateMachine = new StateMachine();
+        myStateMachine = new StateMachine();
         myStateMachine.Initialize(new WanderObjectIdle(myStateMachine));
-        myStateMachine = GetComponent<StateMachine>();
+        //myStateMachine = GetComponent<StateMachine>();
     }
 
     // Update is called once per frame
