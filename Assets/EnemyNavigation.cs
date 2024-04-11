@@ -9,12 +9,12 @@ public class EnemyNavigation : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] float wanderLocation;
 
-    Vector3 staatingLocation;
+    Vector3 startingLocation;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        staatingLocation = transform.position;
+        startingLocation = transform.position;
 
         GetRandomPoint();
     }
@@ -36,7 +36,7 @@ public class EnemyNavigation : MonoBehaviour
 
         NavMeshHit hit;
 
-        bool gotPoint = NavMesh.SamplePosition(staatingLocation + offset, out hit, 1, NavMesh.AllAreas);
+        bool gotPoint = NavMesh.SamplePosition(startingLocation + offset, out hit, 1, NavMesh.AllAreas);
 
         if (gotPoint)
         {
