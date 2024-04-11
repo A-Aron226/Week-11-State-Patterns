@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class WanderObject : MonoBehaviour
 {
-    StateMachine wanderStateMachine;
+    StateMachine myStateMachine;
     // Start is called before the first frame update
     void Start()
     {
-        wanderStateMachine = new StateMachine(new StateWanderObjectRandomMove());
+        myStateMachine = new StateMachine();
+        myStateMachine.Initialize(new WanderObjectIdle(myStateMachine));
     }
 
     // Update is called once per frame
     void Update()
     {
-        wanderStateMachine.Update();
+        myStateMachine.Update();
     }
 }

@@ -6,14 +6,19 @@ public class StateMachine
 {
     State currentState;
 
-    public StateMachine(State initialState)
+    /*public StateMachine(State initialState)
     {
+        ChangeState(initialState);
+    }*/
 
+    public void Initialize(State initialState)
+    {
+        ChangeState(initialState);
     }
 
-    public void CHangeState(State newState)
+    public void ChangeState(State newState)
     {
-        currentState.ExitState();
+        //currentState?.ExitState();
         currentState = newState;
         currentState.EnterState();
     }
@@ -26,6 +31,11 @@ public class StateMachine
 
 public class State
 {
+    protected StateMachine myStateMachine;
+    public State(StateMachine m)
+    {
+        myStateMachine = m;
+    }
     public virtual void EnterState() //using virtual to be able to override functions
     {
 

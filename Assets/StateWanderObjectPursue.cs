@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class StateWanderObjectPursue : State
 {
+    public StateWanderObjectPursue(StateMachine m) : base(m)
+    {
+
+    }
     public override void EnterState() //overriding from State class
     {
         Debug.Log("pursuing");
