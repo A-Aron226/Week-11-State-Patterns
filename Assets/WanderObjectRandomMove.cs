@@ -22,7 +22,6 @@ public class WanderObjectRandomMove : State
 
     }
 
-    //private T Get
     public override void UpdateState()
     {
         Debug.Log("moving");
