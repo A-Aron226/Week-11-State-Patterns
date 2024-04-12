@@ -28,8 +28,7 @@ public class EnumEnemyStates : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.Wander:
-                GoToRandomPosition();
-                
+                GoToRandomPosition(); 
                 break;
 
             case EnemyState.Chase:
@@ -47,7 +46,7 @@ public class EnumEnemyStates : MonoBehaviour
     }
     public void ChasePlayer() 
     {
-        if (Vector3.Distance(transform.position, player.position) >= sightRange) //Chases player if player enters enemy's sight range
+        if (Vector3.Distance(transform.position, player.position) <= sightRange) //Chases player if player enters enemy's sight range
         {
             agent.SetDestination(player.position);
             Debug.Log("Chasing");
@@ -63,13 +62,13 @@ public class EnumEnemyStates : MonoBehaviour
         }
     }
 
-    public void EnemyIdle() //stuns enemy for a certain time (default is 2)
+    public void EnemyIdle() //stuns enemy for a certain time (default is 5)
     {
         Debug.Log("Idle");
 
         elapsed += Time.deltaTime;
 
-        if (elapsed > 2)
+        if (elapsed > 5)
         {
             agent.enabled = true;
             ChasePlayer();
@@ -80,18 +79,17 @@ public class EnumEnemyStates : MonoBehaviour
     public void GoToRandomPosition() //attempts to move in a random direction
     {
         elapsed += Time.deltaTime;
-
-        if (elapsed > 5)
-        {
-            agent.SetDestination(GetRandomPoint());
-        }
+        agent.SetDestination(GetRandomPoint());
             
     }
 
     public Vector3 GetRandomPoint()
         {
-        Debug.Log("moving");
-        Vector3 offset = new Vector3(Random.Range(-wanderLocation, wanderLocation), 0, Random.Range(-wanderLocation, wanderLocation)); //Random position the enemy object can move toward.
+        elapsed += Time.deltaTime;
+        if (elapsed > 5)
+        {
+            Debug.Log("moving");
+            Vector3 offset = new Vector3(Random.Range(-wanderLocation, wanderLocation), 0, Random.Range(-wanderLocation, wanderLocation)); //Random position the enemy object can move toward.
 
             NavMeshHit hit;
 
@@ -101,6 +99,9 @@ public class EnumEnemyStates : MonoBehaviour
             {
                 return hit.position;
             }
+
+            EnemyIdle();
+        }
 
             return Vector3.zero;
         }
