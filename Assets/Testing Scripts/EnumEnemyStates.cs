@@ -28,12 +28,8 @@ public class EnumEnemyStates : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.Wander:
-                GetRandomPoint();
+                GoToRandomPosition();
                 
-                if (elapsed > 5)
-                {
-                    GetRandomPoint();
-                }
                 break;
 
             case EnemyState.Chase:
@@ -81,9 +77,15 @@ public class EnumEnemyStates : MonoBehaviour
     }
 
     [ContextMenu("Move to Random Location")] //Testing if function works as intended
-    public void GoToRandomPosition()
+    public void GoToRandomPosition() //attempts to move in a random direction
     {
-        agent.SetDestination(GetRandomPoint());
+        elapsed += Time.deltaTime;
+
+        if (elapsed > 5)
+        {
+            agent.SetDestination(GetRandomPoint());
+        }
+            
     }
 
     public Vector3 GetRandomPoint()
