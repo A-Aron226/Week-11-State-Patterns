@@ -7,10 +7,12 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
-    //code for AI to wander around, chase, and collide
+    //code for AI to wander around, and chase
     NavMeshAgent agent;
     float wanderLocation = 10;
     Transform targetLocation;
+
+    float elapsed = 0;
 
     Vector3 startingLocation;
     // Start is called before the first frame update
@@ -18,6 +20,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         startingLocation = transform.position;
+        targetLocation = FindObjectOfType<FPSController>().transform;
 
         GetRandomPoint();
     }
@@ -25,12 +28,13 @@ public class EnemyNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        agent.SetDestination(targetLocation.position);
     }
-    public void ChaseLocation()
+    /*public void ChaseLocation() //used in StateWanderObjectPursue
     {
         targetLocation.GetComponent<FPSController>(); //Gets controller component
         agent.SetDestination(targetLocation.position); //Chases player
-    }
+    }*/
 
     [ContextMenu("Move to Random Location")] //Testing if function works as intended
 
@@ -49,6 +53,13 @@ public class EnemyNavigation : MonoBehaviour
         if (gotPoint)
         {
             return hit.position;
+        }
+
+        elapsed += Time.deltaTime;
+
+        if (elapsed > 2)
+        {
+            GetRandomPoint();
         }
 
         return Vector3.zero;

@@ -20,7 +20,7 @@ public class StateMachine : MonoBehaviour
 
     public void ChangeState(State newState)
     {
-        //currentState?.ExitState();
+        currentState?.ExitState();
         currentState = newState;
         currentState.EnterState();
     }

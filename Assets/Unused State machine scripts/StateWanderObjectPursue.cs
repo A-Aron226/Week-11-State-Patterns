@@ -18,7 +18,7 @@ public class StateWanderObjectPursue : State
     public override void UpdateState()
     {
         Debug.Log("pursuing");
-        enemy.ChaseLocation();
+        //enemy.ChaseLocation();
     }
 
     public override void ExitState()
