@@ -22,7 +22,7 @@ public class WanderObjectIdle : State
 
         if (elapsed > 2)
         {
-            myStateMachine.ChangeState(new WanderObjectRandomMove(myStateMachine));
+            myStateMachine.ChangeState(new StateWanderObjectPursue(myStateMachine)); //switches to a pursue state after a set time (default is 2)
         }
     }
 
