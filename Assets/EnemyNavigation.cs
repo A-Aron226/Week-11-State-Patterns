@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
-    //code for AI to wander around
+    //code for AI to wander around, chase, and collide
     NavMeshAgent agent;
     float wanderLocation = 10;
+    Transform targetLocation;
 
     Vector3 startingLocation;
     // Start is called before the first frame update
@@ -23,6 +25,16 @@ public class EnemyNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void OnCollisionEnter(Collision collide)
+    {
+
+    }
+    public void ChaseLocation()
+    {
+        targetLocation.GetComponent<FPSController>(); //Gets controller component
+        agent.SetDestination(targetLocation.position); //Chases player
     }
 
     [ContextMenu("Move to Random Location")] //Testing if function works as intended

@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class StateWanderObjectPursue : State
 {
+    EnemyNavigation enemy;
     public StateWanderObjectPursue(StateMachine m) : base(m)
     {
 
@@ -16,6 +17,7 @@ public class StateWanderObjectPursue : State
     public override void UpdateState()
     {
         Debug.Log("pursuing");
+        enemy.ChaseLocation();
     }
 
     public override void ExitState()
