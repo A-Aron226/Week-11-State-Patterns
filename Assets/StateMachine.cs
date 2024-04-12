@@ -38,7 +38,7 @@ public class State
     {
         myStateMachine = m;
         
-        //m.enemy.GetComponent<NavMeshAgent>();
+        //m.enemy.GetComponent<NavMeshAgent>(); //placeholder
     }
     public virtual void EnterState() //using virtual to be able to override functions
     {

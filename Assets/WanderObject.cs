@@ -11,7 +11,7 @@ public class WanderObject : MonoBehaviour
     void Start()
     {
         myStateMachine = new StateMachine();
-        myStateMachine.Initialize(new WanderObjectIdle(myStateMachine));
+        myStateMachine.Initialize(new WanderObjectRandomMove(myStateMachine));
         //myStateMachine = GetComponent<StateMachine>();
     }
 

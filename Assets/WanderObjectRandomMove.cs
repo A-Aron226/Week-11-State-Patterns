@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.AI;
 public class WanderObjectRandomMove : State
 {
-    NavMeshAgent agent;
-    float wanderLocation = 10;
-    Vector3 startingLocation;
+    //NavMeshAgent agent;
+    //float wanderLocation = 10;
+    //Vector3 startingLocation;
     float elapsed = 0;
+    EnemyNavigation enemy; //calling it in trhough another script seems to work but causes the enemy object to move slowly
 
     public WanderObjectRandomMove(StateMachine m) : base(m)
     {
-
+        //agent.GetComponent<NavMeshAgent>();
+        //agent = myStateMachine.enemy.GetComponent<NavMeshAgent>();
+        //myStateMachine.enemy.transform.position = startingLocation;
     }
     public override void EnterState() //overriding from State class
     {
-        //agent.GetComponent<NavMeshAgent>();
-        //myStateMachine.enemy.transform.position = startingLocation;
-        agent = myStateMachine.enemy.GetComponent<NavMeshAgent>();
 
     }
 
@@ -27,33 +27,15 @@ public class WanderObjectRandomMove : State
         Debug.Log("moving");
         
 
-        if (elapsed > 5)
+        if (elapsed > 5) //Ai moves to another location after a set time (default is 5)
         {
-            GetRandomPoint();
+            enemy.GetRandomPoint();
+            
         }
     }
 
     public override void ExitState()
     {
-        
-    }
-    public void GoToRandomPosition()
-    {
-        agent.SetDestination(GetRandomPoint());
-    }
-    Vector3 GetRandomPoint()
-    {
-        Vector3 offset = new Vector3(Random.Range(-wanderLocation, wanderLocation), 0, Random.Range(-wanderLocation, wanderLocation)); //Random position the enemy object can move toward.
 
-        NavMeshHit hit;
-
-        bool gotPoint = NavMesh.SamplePosition(startingLocation + offset, out hit, 1, NavMesh.AllAreas);
-
-        if (gotPoint)
-        {
-            return hit.position;
-        }
-
-        return Vector3.zero;
     }
 }

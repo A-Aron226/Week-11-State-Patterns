@@ -6,8 +6,9 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
+    //code for AI to wander around
     NavMeshAgent agent;
-    [SerializeField] float wanderLocation;
+    float wanderLocation = 10;
 
     Vector3 startingLocation;
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         agent.SetDestination(GetRandomPoint());
     }
-    Vector3 GetRandomPoint()
+    public Vector3 GetRandomPoint()
     {
         Vector3 offset = new Vector3(Random.Range(-wanderLocation, wanderLocation), 0, Random.Range(-wanderLocation, wanderLocation)); //Random position the enemy object can move toward.
 
