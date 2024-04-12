@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class StateWanderObjectPursue : State
 {
     EnemyNavigation enemy;
+    float attackRange = 5;
     public StateWanderObjectPursue(StateMachine m) : base(m)
     {
 

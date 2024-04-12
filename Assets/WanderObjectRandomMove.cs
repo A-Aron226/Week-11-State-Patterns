@@ -7,6 +7,7 @@ public class WanderObjectRandomMove : State
     //NavMeshAgent agent;
     //float wanderLocation = 10;
     //Vector3 startingLocation;
+    float sightRange = 15;
     float elapsed = 0;
     EnemyNavigation enemy; //calling it in trhough another script seems to work but causes the enemy object to move slowly
 
@@ -31,6 +32,11 @@ public class WanderObjectRandomMove : State
         {
             enemy.GetRandomPoint();
             
+        }
+
+        if ()//if player enters sight range, enemy switches to pursue state
+        {
+            myStateMachine.ChangeState(new StateWanderObjectPursue(myStateMachine));
         }
     }
 

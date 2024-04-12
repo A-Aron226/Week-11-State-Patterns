@@ -26,11 +26,6 @@ public class EnemyNavigation : MonoBehaviour
     void Update()
     {
     }
-
-    public void OnCollisionEnter(Collision collide)
-    {
-
-    }
     public void ChaseLocation()
     {
         targetLocation.GetComponent<FPSController>(); //Gets controller component
